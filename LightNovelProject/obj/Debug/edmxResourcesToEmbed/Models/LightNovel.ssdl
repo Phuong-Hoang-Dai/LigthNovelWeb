@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LightNovelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AdminUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NameUser" Type="nvarchar(max)" />
+    <Property Name="RoleUser" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nchar" MaxLength="50" />
+    <Property Name="PasswordUser" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="IDCate" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCate" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="NameCate" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Content">
+    <Key>
+      <PropertyRef Name="ID_Chapter" />
+    </Key>
+    <Property Name="ID_Chapter" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Novel" Type="int" />
+    <Property Name="Chapter" Type="int" />
+    <Property Name="Name_Chapter" Type="nvarchar(max)" />
+    <Property Name="Content" Type="ntext" />
+  </EntityType>
+  <EntityType Name="Novel">
+    <Key>
+      <PropertyRef Name="ID_Novel" />
+    </Key>
+    <Property Name="ID_Novel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name_NoveL" Type="nvarchar(max)" />
+    <Property Name="Avatar" Type="nvarchar(max)" />
+    <Property Name="Category" Type="nchar" MaxLength="20" />
+    <Property Name="Author" Type="nvarchar(max)" />
+    <Property Name="Desc" Type="ntext" />
+    <Property Name="DateUp" Type="datetime" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="Rate" Type="decimal" Precision="5" Scale="1" />
+    <Property Name="Rate_Count" Type="int" />
+    <Property Name="View_Count" Type="int" />
+    <Property Name="BookMarked_Count" Type="int" />
+    <Property Name="Qty_Chapters" Type="int" />
+    <Property Name="DateMod" Type="datetime" />
+    <Property Name="DatePub" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_Content_Novel">
+    <End Role="Novel" Type="Self.Novel" Multiplicity="0..1" />
+    <End Role="Content" Type="Self.Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Novel">
+        <PropertyRef Name="ID_Novel" />
+      </Principal>
+      <Dependent Role="Content">
+        <PropertyRef Name="ID_Novel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Novel_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Novel" Type="Self.Novel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="IDCate" />
+      </Principal>
+      <Dependent Role="Novel">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LightNovelModelStoreContainer">
+    <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Content" EntityType="Self.Content" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Novel" EntityType="Self.Novel" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Content_Novel" Association="Self.FK_Content_Novel">
+      <End Role="Novel" EntitySet="Novel" />
+      <End Role="Content" EntitySet="Content" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Novel_Category" Association="Self.FK_Novel_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Novel" EntitySet="Novel" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

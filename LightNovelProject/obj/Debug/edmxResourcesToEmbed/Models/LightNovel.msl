@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LightNovelModelStoreContainer" CdmEntityContainer="LightNovelEntities2">
+    <EntitySetMapping Name="AdminUsers">
+      <EntityTypeMapping TypeName="LightNovelModel.AdminUser">
+        <MappingFragment StoreEntitySet="AdminUser">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NameUser" ColumnName="NameUser" />
+          <ScalarProperty Name="RoleUser" ColumnName="RoleUser" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="LightNovelModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IDCate" ColumnName="IDCate" />
+          <ScalarProperty Name="NameCate" ColumnName="NameCate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contents">
+      <EntityTypeMapping TypeName="LightNovelModel.Content">
+        <MappingFragment StoreEntitySet="Content">
+          <ScalarProperty Name="ID_Chapter" ColumnName="ID_Chapter" />
+          <ScalarProperty Name="ID_Novel" ColumnName="ID_Novel" />
+          <ScalarProperty Name="Chapter" ColumnName="Chapter" />
+          <ScalarProperty Name="Name_Chapter" ColumnName="Name_Chapter" />
+          <ScalarProperty Name="Content1" ColumnName="Content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Novels">
+      <EntityTypeMapping TypeName="LightNovelModel.Novel">
+        <MappingFragment StoreEntitySet="Novel">
+          <ScalarProperty Name="DatePub" ColumnName="DatePub" />
+          <ScalarProperty Name="DateMod" ColumnName="DateMod" />
+          <ScalarProperty Name="ID_Novel" ColumnName="ID_Novel" />
+          <ScalarProperty Name="Name_NoveL" ColumnName="Name_NoveL" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="DateUp" ColumnName="DateUp" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Rate_Count" ColumnName="Rate_Count" />
+          <ScalarProperty Name="View_Count" ColumnName="View_Count" />
+          <ScalarProperty Name="BookMarked_Count" ColumnName="BookMarked_Count" />
+          <ScalarProperty Name="Qty_Chapters" ColumnName="Qty_Chapters" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,63 @@
+﻿@model LightNovelProject.Models.Novel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<link href="~/CSS/AddNovelStyle.css" rel="stylesheet" />
+
+<div class="wrapper-add-novel">
+    <div class="form-add">
+        @using (Html.BeginForm("Create", "Novel", FormMethod.Post, new
+        {
+            @enctype = "multipart/form-data"
+        }))
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div class="tittle">Thêm tiểu thuyết</div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group form-item">
+            <span class="text">Tên tiểu thuyết</span>
+                @Html.EditorFor(model => model.Name_NoveL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name_NoveL, "", new { @class = "text-danger" })
+        </div>
+
+            <div class="form-group form-item">
+                <span class="text">Ảnh bìa</span>
+                    <input type="file" name="Image"/>
+                    @Html.ValidationMessageFor(model => model.Avatar, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group form-item">
+                <span class="text">Thể loại</span>
+                    @Html.DropDownList("Category", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group form-item">
+                <span class="text">Tác giả</span>
+                    @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group form-item">
+                <span class="text">Mô tả</span>
+                @Html.EditorFor(model => model.Desc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Desc, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group submit">
+                <div class="col-md-offset- submit-btn">
+                    <input type="submit" value="Tiến hành tạo mới" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>

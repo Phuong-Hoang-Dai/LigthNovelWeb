@@ -1,0 +1,71 @@
+﻿@model IEnumerable<LightNovelProject.Models.Novel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<link href="~/CSS/ManageNovelStyle.css" rel="stylesheet" />
+<div class="wrapper-manage-novel">
+    <div class="Head">Tiểu thuyết</div>
+    <div class="menu-manage-novel">
+        <div class="menu-item"><a href="#">Tất cả</a></div>
+        <div class="menu-item"><a href="#">Chưa hoàn thành</a></div>
+        <div class="menu-item"><a href=@Url.Action("Create")><i class="fa fa-plus" aria-hidden="true"></i> Thêm mới</a></div>
+    </div>
+    <table class="table">
+        <tr>
+            <th>Tên</th>
+            <th>Ảnh bìa</th>
+            <th>Tác giả</th>
+            <th>Ngày đăng</th>
+            <th>Tình trạng</th>
+            <th>Số chương</th>
+            <th>Thể loại</th>
+            <th>Tương tác</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name_NoveL)
+                </td>
+                <td>
+                    <img src=@Url.Content(item.Avatar) class="img-size" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateUp)
+                </td>
+                <td>
+                    @if (item.Status.Value)
+                    {
+                        <span>Đã kết thúc</span>
+                    }
+                    else
+                    {
+                        <span>Đang tiến hành</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qty_Chapters)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category1.NameCate)
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.ID_Novel }, new { @class = "Blue Mybtn" })
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.ID_Novel }, new { @class = "Green Mybtn" })
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.ID_Novel }, new { @class = "Red Mybtn" })
+                    @Html.ActionLink("Xem chương", "Delete", new { id = item.ID_Novel }, new { @class = "Purple Mybtn" })
+                    @Html.ActionLink("Thêm chương", "Delete", new { id = item.ID_Novel }, new { @class = "Orange Mybtn" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

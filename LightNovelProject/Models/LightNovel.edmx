@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LightNovelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NameUser" Type="nvarchar(max)" />
+          <Property Name="RoleUser" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nchar" MaxLength="50" />
+          <Property Name="PasswordUser" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="IDCate" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDCate" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="NameCate" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="ID_Chapter" />
+          </Key>
+          <Property Name="ID_Chapter" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Novel" Type="int" />
+          <Property Name="Chapter" Type="int" />
+          <Property Name="Name_Chapter" Type="nvarchar(max)" />
+          <Property Name="Content" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Novel">
+          <Key>
+            <PropertyRef Name="ID_Novel" />
+          </Key>
+          <Property Name="ID_Novel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_NoveL" Type="nvarchar(max)" />
+          <Property Name="Avatar" Type="nvarchar(max)" />
+          <Property Name="Category" Type="nchar" MaxLength="20" />
+          <Property Name="Author" Type="nvarchar(max)" />
+          <Property Name="Desc" Type="ntext" />
+          <Property Name="DateUp" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="Rate" Type="decimal" Precision="5" Scale="1" />
+          <Property Name="Rate_Count" Type="int" />
+          <Property Name="View_Count" Type="int" />
+          <Property Name="BookMarked_Count" Type="int" />
+          <Property Name="Qty_Chapters" Type="int" />
+          <Property Name="DateMod" Type="datetime" />
+          <Property Name="DatePub" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Content_Novel">
+          <End Role="Novel" Type="Self.Novel" Multiplicity="0..1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Novel">
+              <PropertyRef Name="ID_Novel" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="ID_Novel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Novel_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Novel" Type="Self.Novel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="IDCate" />
+            </Principal>
+            <Dependent Role="Novel">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LightNovelModelStoreContainer">
+          <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Content" EntityType="Self.Content" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Novel" EntityType="Self.Novel" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Content_Novel" Association="Self.FK_Content_Novel">
+            <End Role="Novel" EntitySet="Novel" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Novel_Category" Association="Self.FK_Novel_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Novel" EntitySet="Novel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LightNovelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NameUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoleUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="PasswordUser" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="IDCate" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDCate" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NameCate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Novels" Relationship="Self.FK_Novel_Category" FromRole="Category" ToRole="Novel" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="ID_Chapter" />
+          </Key>
+          <Property Name="ID_Chapter" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Novel" Type="Int32" />
+          <Property Name="Chapter" Type="Int32" />
+          <Property Name="Name_Chapter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Content1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Novel" Relationship="Self.FK_Content_Novel" FromRole="Content" ToRole="Novel" />
+        </EntityType>
+        <EntityType Name="Novel">
+          <Key>
+            <PropertyRef Name="ID_Novel" />
+          </Key>
+          <Property Name="ID_Novel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_NoveL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateUp" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="Rate" Type="Decimal" Precision="5" Scale="1" />
+          <Property Name="Rate_Count" Type="Int32" />
+          <Property Name="View_Count" Type="Int32" />
+          <Property Name="BookMarked_Count" Type="Int32" />
+          <Property Name="Qty_Chapters" Type="Int32" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_Novel_Category" FromRole="Novel" ToRole="Category" />
+          <NavigationProperty Name="Contents" Relationship="Self.FK_Content_Novel" FromRole="Novel" ToRole="Content" />
+          <Property Name="DateMod" Type="DateTime" Precision="3" />
+          <Property Name="DatePub" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Novel_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Novel" Type="Self.Novel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="IDCate" />
+            </Principal>
+            <Dependent Role="Novel">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Content_Novel">
+          <End Role="Novel" Type="Self.Novel" Multiplicity="0..1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Novel">
+              <PropertyRef Name="ID_Novel" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="ID_Novel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LightNovelEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminUsers" EntityType="Self.AdminUser" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Contents" EntityType="Self.Content" />
+          <EntitySet Name="Novels" EntityType="Self.Novel" />
+          <AssociationSet Name="FK_Novel_Category" Association="Self.FK_Novel_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Novel" EntitySet="Novels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Content_Novel" Association="Self.FK_Content_Novel">
+            <End Role="Novel" EntitySet="Novels" />
+            <End Role="Content" EntitySet="Contents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LightNovelModelStoreContainer" CdmEntityContainer="LightNovelEntities2">
+          <EntitySetMapping Name="AdminUsers">
+            <EntityTypeMapping TypeName="LightNovelModel.AdminUser">
+              <MappingFragment StoreEntitySet="AdminUser">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameUser" ColumnName="NameUser" />
+                <ScalarProperty Name="RoleUser" ColumnName="RoleUser" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="LightNovelModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IDCate" ColumnName="IDCate" />
+                <ScalarProperty Name="NameCate" ColumnName="NameCate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contents">
+            <EntityTypeMapping TypeName="LightNovelModel.Content">
+              <MappingFragment StoreEntitySet="Content">
+                <ScalarProperty Name="ID_Chapter" ColumnName="ID_Chapter" />
+                <ScalarProperty Name="ID_Novel" ColumnName="ID_Novel" />
+                <ScalarProperty Name="Chapter" ColumnName="Chapter" />
+                <ScalarProperty Name="Name_Chapter" ColumnName="Name_Chapter" />
+                <ScalarProperty Name="Content1" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Novels">
+            <EntityTypeMapping TypeName="LightNovelModel.Novel">
+              <MappingFragment StoreEntitySet="Novel">
+                <ScalarProperty Name="DatePub" ColumnName="DatePub" />
+                <ScalarProperty Name="DateMod" ColumnName="DateMod" />
+                <ScalarProperty Name="ID_Novel" ColumnName="ID_Novel" />
+                <ScalarProperty Name="Name_NoveL" ColumnName="Name_NoveL" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="DateUp" ColumnName="DateUp" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Rate_Count" ColumnName="Rate_Count" />
+                <ScalarProperty Name="View_Count" ColumnName="View_Count" />
+                <ScalarProperty Name="BookMarked_Count" ColumnName="BookMarked_Count" />
+                <ScalarProperty Name="Qty_Chapters" ColumnName="Qty_Chapters" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<LightNovelProject.Models.Novel>
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Main_Layout.cshtml";
+}
+
+<link href="~/CSS/HomeStyle.css" rel="stylesheet" />
+
+<header class="index-header">
+    <div class="backgrourd" style="background:url(@Url.Content("~/Images/index-background.png"));"></div>
+</header>
+
+<div class="section">
+    <div class="section-header">
+        <h4>New Ongoing Release</h4>
+        <a href="#">View More</a>
+    </div>
+    <div class="section-wrapper">
+        @foreach(var item in Model)
+        {
+            <ul class="section-content">
+                <li class="section-item">
+                    <a href="#">
+                        <div class="avatar" style="background-image:url(@Url.Content(item.Avatar));"></div>
+                        <span class="name">@item.Name_NoveL</span>
+                    </a>
+                    <p>
+                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                        @if (!item.Status.HasValue)
+                        {
+                            <span> ongoing</span>
+
+                        }
+                        else
+                        {
+                            <span> finish</span>
+                        }
+                    </p>
+                    <p>
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        <span>@item.Qty_Chapters chapters</span>
+                    </p>
+                </li>
+            </ul>
+        }
+
+    </div>
+
+</div>
+

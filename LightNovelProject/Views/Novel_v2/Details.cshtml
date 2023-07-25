@@ -1,0 +1,132 @@
+﻿@model LightNovelProject.Models.Novel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Novel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name_NoveL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name_NoveL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Avatar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Avatar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateUp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateUp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rate_Count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rate_Count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.View_Count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.View_Count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookMarked_Count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookMarked_Count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qty_Chapters)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qty_Chapters)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateMod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateMod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatePub)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatePub)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category1.NameCate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category1.NameCate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Novel })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Novel }) |
+    @Html.ActionLink("Back to List", "Manage")
+</p>

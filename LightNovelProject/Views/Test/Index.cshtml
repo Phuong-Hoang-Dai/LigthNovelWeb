@@ -1,0 +1,101 @@
+﻿@model IEnumerable<LightNovelProject.Models.Novel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name_NoveL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Avatar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateUp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rate_Count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.View_Count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookMarked_Count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty_Chapters)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category1.NameCate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name_NoveL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Avatar)
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateUp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rate_Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.View_Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookMarked_Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qty_Chapters)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category1.NameCate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Novel }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Novel }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Novel })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,58 @@
+﻿:root {
+    --bg-button1: #7a6ff1;
+    --bg-button2: rgba(115,103,240,.1);
+    --text-color1: #fff;
+    --text-color2: #2a2e2e;
+    --text-color3: #7367f0;
+}
+
+i{
+    margin-right: 5px;
+}
+.Head{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.wrapper-manage-novel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1300px;
+    margin: 0 auto;
+}
+
+.menu-manage-novel {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    margin: 30px 0;
+}
+
+.menu-item {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline;
+}
+
+.menu-item:hover a{
+    background-color: var(--bg-button1);
+    color: var(--text-color1);
+}
+
+.menu-item a {
+    background-color: var(--bg-button2);
+    border: 1px solid var(--bg-button2);
+    border-radius: 10px;
+    color: var(--text-color3);
+    padding: 6px 4px;
+    margin-right: 10px;
+}

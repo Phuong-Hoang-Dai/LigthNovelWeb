@@ -1,0 +1,51 @@
+﻿@model LightNovelProject.Models.Content
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Content</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Chapter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chapter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name_Chapter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name_Chapter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Novel.Name_NoveL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Novel.Name_NoveL)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Chapter }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

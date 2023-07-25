@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LightNovelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AdminUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NameUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RoleUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="PasswordUser" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="IDCate" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDCate" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NameCate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Novels" Relationship="Self.FK_Novel_Category" FromRole="Category" ToRole="Novel" />
+  </EntityType>
+  <EntityType Name="Content">
+    <Key>
+      <PropertyRef Name="ID_Chapter" />
+    </Key>
+    <Property Name="ID_Chapter" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Novel" Type="Int32" />
+    <Property Name="Chapter" Type="Int32" />
+    <Property Name="Name_Chapter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Content1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Novel" Relationship="Self.FK_Content_Novel" FromRole="Content" ToRole="Novel" />
+  </EntityType>
+  <EntityType Name="Novel">
+    <Key>
+      <PropertyRef Name="ID_Novel" />
+    </Key>
+    <Property Name="ID_Novel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_NoveL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateUp" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Rate" Type="Decimal" Precision="5" Scale="1" />
+    <Property Name="Rate_Count" Type="Int32" />
+    <Property Name="View_Count" Type="Int32" />
+    <Property Name="BookMarked_Count" Type="Int32" />
+    <Property Name="Qty_Chapters" Type="Int32" />
+    <NavigationProperty Name="Category1" Relationship="Self.FK_Novel_Category" FromRole="Novel" ToRole="Category" />
+    <NavigationProperty Name="Contents" Relationship="Self.FK_Content_Novel" FromRole="Novel" ToRole="Content" />
+    <Property Name="DateMod" Type="DateTime" Precision="3" />
+    <Property Name="DatePub" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_Novel_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Novel" Type="Self.Novel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="IDCate" />
+      </Principal>
+      <Dependent Role="Novel">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Content_Novel">
+    <End Role="Novel" Type="Self.Novel" Multiplicity="0..1" />
+    <End Role="Content" Type="Self.Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Novel">
+        <PropertyRef Name="ID_Novel" />
+      </Principal>
+      <Dependent Role="Content">
+        <PropertyRef Name="ID_Novel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LightNovelEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdminUsers" EntityType="Self.AdminUser" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Contents" EntityType="Self.Content" />
+    <EntitySet Name="Novels" EntityType="Self.Novel" />
+    <AssociationSet Name="FK_Novel_Category" Association="Self.FK_Novel_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Novel" EntitySet="Novels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Content_Novel" Association="Self.FK_Content_Novel">
+      <End Role="Novel" EntitySet="Novels" />
+      <End Role="Content" EntitySet="Contents" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

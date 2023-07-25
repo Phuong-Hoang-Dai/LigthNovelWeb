@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/CSS/Layout_Style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="main-header">
+        <div class="wrapper">
+            <div class="logo">
+                <a href="#">
+                    <img src=@Url.Content("~/Images/Logo.jfif") alt="Logo page" />
+                </a>
+            </div>
+            <div class="menu">
+                <div class="navigation">
+                    <div class="slog"> Your fictional stories hub.</div>
+                    <ul class="navbar-menu">
+                        <li class="nav-items">
+                            <a title="Search Light Novels" href="#"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                        </li>
+                        <li class="nav-items">
+                            <a title="Explore the Recently Added Light Novels" href="#"><i class="fa fa-th-large" aria-hidden="true"></i> Browse</a>
+                        </li>
+                        <li class="nav-items">
+                            <a title="Novel Ranking" href="#"><i class="fa fa-diamond" aria-hidden="true"></i> Ranking</a>
+                        </li>
+                        <li class="nav-items">
+                            <a title="Check out the recently added novel chapters" href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> Updates</a>
+                        </li>
+                        <li class="nav-items">
+                            <a title="Explore the Novels with Advanced Filter Functions" href="#"><i class="fa fa-filter" aria-hidden="true"></i> Filter</a>
+                        </li>
+                        <li class="nav-items">
+                            <a title="Light Novel Pub Development Announcements" href="#"><i class="fa fa-bullhorn" aria-hidden="true"></i> DEV</a>
+                        </li>
+                        <li class="nav-items">
+                            <a class="nightmode_switch" data-tool="night" title="Dark Mode" data-night="0" data-content="Dark Theme">
+                                <i class="fa fa-moon-o" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="login-nav">
+                    <a class="login-button" href="#">SIGN IN</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="sidebar-wrapper"></div>
+    <div>
+        @RenderBody()
+    </div>
+    <footer>
+        <div class="wrapper">
+            <div class="logo">
+                <a href="/hub_30091942" title="Read Most Popular Light Novels Online for Free | Light Novel Pub">
+                    <img src=@Url.Content("~/Images/Logo.jfif") alt="Logo page" />
+                </a>
+            </div>
+            <div class="outro">
+                Contact us
+                <div>
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <a href="mailto:lightnovel@gmail.com">lightnovel@gmail.com</a>
+                </div>
+                <div>
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a href="tel:+84553377516">+84553377516</a>
+                </div>
+                Thank you
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

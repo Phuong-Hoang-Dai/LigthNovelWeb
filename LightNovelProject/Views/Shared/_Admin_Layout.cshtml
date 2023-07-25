@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/CSS/AdminStyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="main-header">
+        <div class="wrapper">
+            <div class="logo">
+                <a href="#">
+                    <img src=@Url.Content("~/Images/Logo.jfif") alt="Logo page" />
+                </a>
+            </div>
+            <div class="menu">
+                <div class="navigation">
+                    <div class="slog"> Quản lí trang của bạn</div>
+                    <ul class="navbar-menu">
+                        <li class="nav-items">
+                            <a title="Quản lí tiểu thuyết" href="#"><i class="fa fa-book" aria-hidden="true"></i>Tiểu thuyết</a>
+                        </li>
+                        <li class="nav-items">
+                            <a title="Quẩn lí người dùng" href="#"><i class="fa fa-users" aria-hidden="true"></i>Người dùng</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="profile">
+                    <p>Hello</p>
+                    <a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Profile</a>
+                </div>
+            </div>
+            
+        </div>
+    </header>
+            <div>
+                @RenderBody()
+            </div>
+            <footer>
+                <div class="wrapper">
+                    <div class="outro">
+                        Contact us
+                        <div>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <a href="mailto:lightnovel@gmail.com">lightnovel@gmail.com</a>
+                        </div>
+                        <div>
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <a href="tel:+84553377516">+84553377516</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+</body>
+</html>
